@@ -2,6 +2,7 @@ import { useState } from "react";
 
 export function TodoItem({ completed, id, title, editId, toggleEditId, editTodo, toggleTodo, deleteTodo }) {
   const [newName, setNewName] = useState("");
+  const [editStatus, setEditStatus] = useState(false);
   return (
     <li>
       <label>
@@ -13,7 +14,8 @@ export function TodoItem({ completed, id, title, editId, toggleEditId, editTodo,
                 value={newName}
                 onChange={(e) => setNewName(e.target.value)}
             />
-          <button className="btn" onClick={()=>{
+          <button className="btn" onClick={(e)=>{
+            setEditStatus(true);
             editTodo(id, newName);
             toggleEditId(id);
             }
@@ -25,14 +27,22 @@ export function TodoItem({ completed, id, title, editId, toggleEditId, editTodo,
           <input
           type="checkbox"
           checked={completed}
-          onChange={(e) => toggleTodo(id, e.target.checked)}
+          onChange={(e) => {
+            if(editStatus){
+              setEditStatus(false);
+              return;
+            }
+            toggleTodo(id, e.target.checked);
+          }}
         />
 
         }
         {title}
+        { editId !== id &&
         <button className="btn btn-danger" onClick={() => deleteTodo(id)}>
           Delete
         </button>
+        }
         { editId !== id &&
         <button className="btn" onClick={() => toggleEditId(id)}>
           Edit

@@ -12,10 +12,6 @@ export function TodoList({ todos, editTodo, setTodos, toggleTodo, deleteTodo }) 
     setEditId(id)
   }
 
-  function handleSubmitEdit(id, title){
-    
-  }
-
   return (
     <div>
       <h1 className="header"> Todo List</h1>
