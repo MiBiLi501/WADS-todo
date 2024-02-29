@@ -13,10 +13,10 @@ export function TodoList({ todos, editTodo, setTodos, toggleTodo, deleteTodo }) 
   }
 
   return (
-    <div>
-      <h1 className="header"> Todo List</h1>
-      <ul className="list">
-        {todos.length === 0 && "No todos"}
+    <div className="h-4/5 px-5 py-1 my-5 bg-gradient-to-b from-blue-950">
+      <h1 className="header font-mono"> Todo List</h1>
+      <ul className="list overflow-ellipsis">
+        <div className="font-mono">{todos.length === 0 && "No todos"}</div>
         {(todos).map((todo, id) => {
           return (
             <TodoItem

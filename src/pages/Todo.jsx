@@ -49,8 +49,10 @@ function Todo() {
 
   return (
     <>
-      <TodoForm addTodo={addTodo}/>
-      <TodoList todos={todos} setTodos={setTodos} toggleTodo={toggleTodo} deleteTodo={deleteTodo} editTodo={editTodo}/>
+      <div className="h-screen p-5 bg-gradient-to-br from-gray-900 to-slate-800">
+        <TodoForm addTodo={addTodo}/>
+        <TodoList todos={todos} setTodos={setTodos} toggleTodo={toggleTodo} deleteTodo={deleteTodo} editTodo={editTodo}/>
+      </div>
     </>
   );
 }
