@@ -39,12 +39,12 @@ export function TodoItem({ completed, id, title, editId, toggleEditId, editTodo,
         }
         <div className="font-mono text-lg title">{title}</div>
         { editId !== id &&
-        <button className="btn btn-danger hover:animate-pulse" onClick={() => deleteTodo(id)}>
+        <button className="font-mono btn btn-danger hover:animate-pulse" onClick={() => deleteTodo(id)}>
           Delete
         </button>
         }
         { editId !== id &&
-        <button className="btn hover:animate-pulse" onClick={() => toggleEditId(id)}>
+        <button className="font-mono btn hover:animate-pulse" onClick={() => toggleEditId(id)}>
           Edit
         </button>
         }

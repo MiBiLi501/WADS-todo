@@ -5,7 +5,7 @@ import { TodoList } from "../components/TodoList";
 
 function Todo() {
   const [todos, setTodos] = useState([]);
-  const [isactive, setIsactive] = useState(false);
+  const [showUnchecked, setShowUnchecked] = useState(false);
 
   function addTodo(title) {
     setTodos((currentTodos) => {
@@ -47,11 +47,16 @@ function Todo() {
     })
   }
 
+  function toggleUnchecked() {
+    setShowUnchecked(!showUnchecked);
+    return;
+  }
+
   return (
     <>
       <div className="h-screen p-5 bg-gradient-to-br from-gray-900 to-slate-800">
         <TodoForm addTodo={addTodo}/>
-        <TodoList todos={todos} setTodos={setTodos} toggleTodo={toggleTodo} deleteTodo={deleteTodo} editTodo={editTodo}/>
+        <TodoList todos={todos} showUnchecked={showUnchecked} toggleUnchecked={toggleUnchecked} toggleTodo={toggleTodo} deleteTodo={deleteTodo} editTodo={editTodo}/>
       </div>
     </>
   );

@@ -8,8 +8,8 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Landing />} exact />
-        <Route path="/todo" element={<Todo />} />
+        {/* <Route path="/" element={<Landing />}  /> */}
+        <Route path="/" element={<Todo />} exact/>
       </Routes>
     </Router>
 

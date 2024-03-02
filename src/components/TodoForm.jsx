@@ -18,7 +18,7 @@ export function TodoForm({ addTodo }) {
         <div className="form-row">
           <label className="font-mono text-center text-2xl" htmlFor="item">New item</label>
           <input
-          className="font-mono"
+            className="font-mono"
             placeholder="Enter to-do name"
             type="text"
             id="item"

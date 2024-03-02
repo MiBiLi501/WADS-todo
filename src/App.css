@@ -124,7 +124,7 @@ html, body{
 
 .title{
   text-wrap: wrap;
-  max-width: 9rem;
+  width: 9rem;
   overflow: hidden;
 }
 
