@@ -57,7 +57,7 @@ function Todo() {
   return (
     <>
       <div className="flex flex-col h-full">
-        <div className="w-screen h-20"></div>
+        {/* <div className="w-screen h-20"></div> */}
         <div className="p-5 bg-gradient-to-br from-gray-900 to-slate-800 h-full">
           <TodoForm addTodo={addTodo}/>
           <TodoList todos={todos} showUnchecked={showUnchecked} toggleUnchecked={toggleUnchecked} toggleTodo={toggleTodo} deleteTodo={deleteTodo} editTodo={editTodo}/>
