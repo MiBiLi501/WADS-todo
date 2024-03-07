@@ -1,14 +1,28 @@
 import { useState } from "react";
+import {db} from "../firebase"
+import { collection, addDoc, Timestamp } from "firebase/firestore";
 
 export function TodoForm({ addTodo }) {
   const [newItem, setNewItem] = useState("");
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
+
+
 
     if (newItem === "") return;
 
-    addTodo(newItem);
+    try{
+      await addDoc(collection(db, "tasks"), {
+        title: newItem,
+        completed: false,
+        created: Timestamp.now()
+      })
+    }    catch(err) {
+      alert(err);
+    }
+
+    // addTodo(newItem);
     setNewItem("");
   }
 

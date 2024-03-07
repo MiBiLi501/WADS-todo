@@ -13,11 +13,12 @@ export function TodoList({ todos, editTodo, showUnchecked, toggleUnchecked, togg
   }
 
   function todosFilter(){
-    return showUnchecked ? todos.filter((todo) => !todo.completed) : todos;
+    return showUnchecked ? todos.filter((todo) => !todo.data.completed) : todos;
   }
 
+
   return (
-    <div className="h-4/5 px-5 py-1 my-5 bg-gradient-to-b from-blue-950">
+    <div className="h-4/5 px-5 pt-1 mt-5 bg-gradient-to-b from-blue-950">
       <div className="flex items-center justify-between">
         <h1 className="header font-mono">Todo List</h1>
         <button className={"btn font-mono text-xs " + (showUnchecked && "btn-danger animate-pulse")} onClick={() => toggleUnchecked()}>Only show unchecked</button>
@@ -27,7 +28,8 @@ export function TodoList({ todos, editTodo, showUnchecked, toggleUnchecked, togg
         {(todosFilter()).map((todo) => {
           return (
             <TodoItem
-              {...todo}
+              {...todo.data}
+              id={todo.id}
               key={todo.id}
               editId={editId}
               toggleEditId={toggleEditId}

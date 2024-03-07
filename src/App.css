@@ -128,17 +128,17 @@ html, body{
 
 .title{
   text-wrap: wrap;
-  width: 9rem;
+  min-width: 9rem;
   overflow: hidden;
 }
 
 .textInput {
   padding: 0.5em;
   outline: none;
-  width: 4em;
+  width: 10em;
   height: 2em;
   appearance: none;
-  pointer-events: none;
+  /* pointer-events: none; */
 }
 
 .list li:has(input:not(.textInput)) label::before {

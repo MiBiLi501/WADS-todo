@@ -18,6 +18,7 @@ export function Edit({ addTodo }) {
         <div className="form-row">
           <label htmlFor="item">New item</label>
           <input
+            className="textInput"
             type="text"
             id="item"
             value={newItem}

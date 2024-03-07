@@ -32,7 +32,7 @@ export function TodoItem({ completed, id, title, editId, toggleEditId, editTodo,
               setEditStatus(false);
               return;
             }
-            toggleTodo(id, e.target.checked);
+            toggleTodo(id, !e.target.checked);
           }}
         />
 
