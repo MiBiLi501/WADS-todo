@@ -8,7 +8,6 @@ import { signOut } from "firebase/auth"
 import { auth, db } from "../firebase"
 
 function Todo({user, setUser}) {
-  console.log(user)
   const [todos, setTodos] = useState([]);
   const [showUnchecked, setShowUnchecked] = useState(false);
   const [signedIn, setSignedIn] = useState(false);

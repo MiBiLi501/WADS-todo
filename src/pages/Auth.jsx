@@ -1,9 +1,9 @@
 import "../App.css";
 import { useState } from "react";
-import { auth } from "../firebase";
+import { auth, db } from "../firebase";
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged } from "firebase/auth"
 import { Navigate } from "react-router-dom";
-import { Firestore } from "firebase/firestore";
+import { Firestore, addDoc, collection, doc, setDoc } from "firebase/firestore";
 
 {/* <Link to="/Dashboard"> Dashboard </Link> */}
 function Auth({user, setUser}) {
@@ -18,8 +18,11 @@ function Auth({user, setUser}) {
     async function register() {
        
         try {
-            const user = await createUserWithEmailAndPassword(auth, email, password);
-            console.log(user);
+            const newUser = await createUserWithEmailAndPassword(auth, email, password);
+            setDoc(doc(db, 'users', newUser.user.uid), {
+                id: newUser.user.uid
+            });
+            
         } catch (err){
             alert(err)
         }
