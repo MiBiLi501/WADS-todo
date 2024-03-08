@@ -6,16 +6,19 @@ import { useState } from "react";
 
 function App() {
   const [user, setUser] = useState(null);
+  const [avatarImg, setAvatarImg] = useState(null);
+
+  
+
   return (
     <Router>
       <Routes>
         <Route path="/" element={<Todo user={user} setUser=
-        {setUser}/>} exact/>
+        {setUser} avatarImg={avatarImg} setAvatarImg={setAvatarImg}/>} exact/>
         <Route path="/auth" element={<Auth user={user} setUser={setUser}/>}/>
       </Routes>
     </Router>
 
-    // <Todo />
   );
 }
 

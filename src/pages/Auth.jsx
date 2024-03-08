@@ -3,9 +3,8 @@ import { useState } from "react";
 import { auth, db } from "../firebase";
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged } from "firebase/auth"
 import { Navigate } from "react-router-dom";
-import { Firestore, addDoc, collection, doc, setDoc } from "firebase/firestore";
+import { doc, setDoc } from "firebase/firestore";
 
-{/* <Link to="/Dashboard"> Dashboard </Link> */}
 function Auth({user, setUser}) {
     if(user != null) return <Navigate to=".."/>
     const [email, setEmail] = useState("");
@@ -45,17 +44,13 @@ function Auth({user, setUser}) {
         <div className="w-full fixed h-full flex flex-col items-center justify-center">
             
             <div className="h-1/2 bg-slate-800 py-10 px-14 flex flex-col items-start">
-                {/* <button className="absolute">back</button> */}
                 <h1 className="mb-5 font-mono">Login</h1>
                 <input
                 className="mb-5 font-mono textInput"
                 type='email'
                 id='email'
                 placeholder="E-mail"
-                // name='title'
                 onChange={(e) => setEmail(e.target.value)}
-                // value={loginEmail}
-                // placeholder='Enter title'/>
                 />
                 <input 
                     className="mb-12 font-mono textInput"
