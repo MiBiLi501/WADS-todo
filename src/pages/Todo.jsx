@@ -3,23 +3,25 @@ import { Link, Navigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { TodoForm } from "../components/TodoForm";
 import { TodoList } from "../components/TodoList";
-import { doc, deleteDoc, updateDoc, collection, query, onSnapshot, orderBy } from "@firebase/firestore";
-import { signOut } from "firebase/auth";
-import { auth, db, upload } from "../firebase";
+import { doc, deleteDoc, updateDoc, collection, query, onSnapshot, orderBy, getDoc } from "@firebase/firestore";
+import { auth, db, upload, logout } from "../firebase";
 import defaultAvatar from "../img/default.png"
 
 function Todo({user, setAvatarImg}) {
-  if(user == null) return <Navigate to="/auth"/>
+  if(user == null) return <Navigate to="/login"/>
 
   const [todos, setTodos] = useState([]);
   const [photo, setPhoto] = useState(null);
   const [loading, setLoading] = useState(false);
   const [showUnchecked, setShowUnchecked] = useState(false);
+  const [username, setUsername] = useState("");
 
+  const docRef = doc(db, "users", user.uid)
+    getDoc(docRef).then((docSnap) => {
+      setUsername(docSnap.data().username)
+    })
+  
 
-  async function logOut() {
-    await signOut(auth)
-  }
 
   useEffect(() => {
     const q = query(collection(db, "users", user.uid, "tasks"), orderBy("created", "desc"));
@@ -28,7 +30,10 @@ function Todo({user, setAvatarImg}) {
         id: doc.id, 
         data: doc.data()})))
     })
+    
     if(!user) setAvatarImg(user.photoURL)
+
+    
   })
 
   async function toggleTodo(id, completed) {
@@ -92,8 +97,9 @@ function Todo({user, setAvatarImg}) {
       <div className="flex flex-col h-full">
         <div className="flex items-center h-20">
           <img id="avatar" src={avatarRender()} alt="Avatar"/>
+          <h1 className="font-mono mr-3">Hello {username}!</h1>
           {user != null ? 
-          <button className="btn mr-7 font-mono" onClick={logOut}>Log out</button>
+          <button className="btn mr-7 font-mono" onClick={logout}>Log out</button>
           :
           
             <Link to="/auth">
