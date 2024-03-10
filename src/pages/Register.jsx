@@ -36,13 +36,17 @@ function Register({user, setUser}) {
                 onChange={(e) => setEmail(e.target.value)}
                 />
                 <input 
-                    className="mb-12 font-mono textInput"
+                    className="mb-9 font-mono textInput"
                     placeholder="Password"
                     onChange={(e) => setPassword(e.target.value)}
                 />
                 <div className="flex justify-between w-full mb-1">
                     <button
                     className="font-mono btn hover:animate-pulse" onClick={() => registerWithEmailAndPassword(username, email, password)}>Sign up</button>
+
+                    <Link to="/login">
+                    <button className="btn font-mono">Back</button>
+                    </Link>
                     
                 </div>
 

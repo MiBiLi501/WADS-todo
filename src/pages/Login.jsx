@@ -1,6 +1,6 @@
 import "../App.css";
 import { useEffect, useState } from "react";
-import { auth, db, loginWithEmailAndPassword } from "../firebase";
+import { auth, db, loginWithEmailAndPassword, signInWithGoogle } from "../firebase";
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged } from "firebase/auth"
 import { Navigate,Link } from "react-router-dom";
 import { doc, setDoc } from "firebase/firestore";
@@ -38,7 +38,7 @@ function Login({user, setUser}) {
                     
                 </div>
 
-              <button className="btn font-mono">Sign in with google</button>
+              <button className="btn font-mono" onClick={signInWithGoogle}>Sign in with google</button>
 
             </div>
         </div>

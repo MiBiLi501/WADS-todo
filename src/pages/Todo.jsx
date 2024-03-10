@@ -31,9 +31,8 @@ function Todo({user, setAvatarImg}) {
         data: doc.data()})))
     })
     
-    if(!user) setAvatarImg(user.photoURL)
+    if(!user) setAvatarImg(user.photoURL);
 
-    
   })
 
   async function toggleTodo(id, completed) {

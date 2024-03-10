@@ -1,7 +1,7 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { getAuth, signInWithPopup, updateProfile, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "firebase/auth"; 
-import { addDoc, collection, getDocs, getFirestore, query,setDoc,doc } from "firebase/firestore";
+import { getAuth, signInWithPopup, updateProfile, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, GoogleAuthProvider } from "firebase/auth"; 
+import { addDoc, collection, getDocs, getFirestore, query, setDoc, doc, where } from "firebase/firestore";
 import { getStorage, uploadBytes, ref, getDownloadURL } from "firebase/storage";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useEffect } from "react";
@@ -26,6 +26,7 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
 const storage = getStorage(app);
+const googleProvider = new GoogleAuthProvider();
 
 async function signInWithGoogle() {
   try {
@@ -34,9 +35,9 @@ async function signInWithGoogle() {
     const q = query(collection(db, "users"), where("uid", "==", user.uid))
     const docs = await getDocs(q);
     if(docs.docs.length === 0){
-      await addDoc(collection(dc, "users/"+user.uid), {
+      setDoc(doc(db, "users", user.uid), {
         uid: user.uid,
-        name: user.displayName,
+        username: user.displayName,
         authProvider: "google",
         email: user.email
       });
@@ -45,6 +46,7 @@ async function signInWithGoogle() {
     console.log(err);
     alert(err.message);
   }
+
 }
 
 async function registerWithEmailAndPassword(username, email, password) {
