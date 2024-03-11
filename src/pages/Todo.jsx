@@ -24,8 +24,9 @@ function Todo({user, setAvatarImg}) {
 
 
   useEffect(() => {
+    
     const q = query(collection(db, "users", user.uid, "tasks"), orderBy("created", "desc"));
-    onSnapshot(q, (querySnapshot) => {
+    const unsubscribe = onSnapshot(q, (querySnapshot) => {
       setTodos(querySnapshot.docs.map(doc => ({
         id: doc.id, 
         data: doc.data()})))
@@ -33,7 +34,9 @@ function Todo({user, setAvatarImg}) {
     
     if(!user) setAvatarImg(user.photoURL);
 
-  })
+    return () => unsubscribe();
+
+  }, [])
 
   async function toggleTodo(id, completed) {
     const todoDocRef = doc(db, "users", user.uid, "tasks", id);
